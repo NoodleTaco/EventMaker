@@ -59,7 +59,7 @@ public  Event(date,startTime, location, contact, duration){
 
     @Override
     public int compareTo(Event o){
-    return 0;
+    return ;
     }
 
     @Override
