@@ -1,5 +1,5 @@
 public enum Department {
-    CS, MATH, EE, ITI, BAIT;
+    BAIT,CS,EE,ITI,MATH;
 
 
 
