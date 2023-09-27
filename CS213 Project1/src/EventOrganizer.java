@@ -63,18 +63,51 @@ public class EventOrganizer
     private void processACommand(StringTokenizer stringTokenizer)
     {
         Event event = new Event();
+
         processDateInput(event,stringTokenizer.nextToken());
 
-        String timeSlotCheck = stringTokenizer.nextToken();
+        processTimeInput(event,stringTokenizer.nextToken());
 
-        String locationCheck = stringTokenizer.nextToken();
-        String departmentCheck = stringTokenizer.nextToken();
-        String contactCheck = stringTokenizer.nextToken();
-        String durationCheck = stringTokenizer.nextToken();
+        processLocationInput(event,stringTokenizer.nextToken());
 
+        processContactInput(event,stringTokenizer.nextToken(),stringTokenizer.nextToken());
+
+        processDurationInput(event,stringTokenizer.nextToken());
+
+        if(event.getDate() != null && event.getStartTime() != null && event.getLocation() != null && event.getContact() != null && event.getDuration() != 0)
+        {
+            if (eventCalendar.contains(event))
+            {
+                System.out.println("The event is already on the calendar.");
+            }
+            else
+            {
+                eventCalendar.add(event);
+                System.out.println("Event added to the calendar.");
+            }
+        }
     }
     private void processRCommand(StringTokenizer stringTokenizer)
     {
+        Event event = new Event();
+
+        processDateInput(event,stringTokenizer.nextToken());
+
+        processTimeInput(event,stringTokenizer.nextToken());
+
+        processLocationInput(event,stringTokenizer.nextToken());
+
+        if(event.getDate() != null && event.getStartTime() != null && event.getLocation() != null )
+        {
+            if (eventCalendar.remove(event))
+            {
+                System.out.println("Event has been removed from the calendar!");
+            }
+            else
+            {
+                System.out.println("Cannot remove; event is not in the calendar!");
+            }
+        }
 
     }
 
@@ -90,30 +123,115 @@ public class EventOrganizer
         {
             System.out.println(date.toString() + ": Invalid calendar date!");
         }
+        //NOTICE! There are multiple error messages yet to be implemented that can print out resulting from date
+        //Need to implement a check for if the date is a future date and if the date is within 6 months
     }
 
     private void processTimeInput(Event event, String timeSlotInput)
     {
-
+        if(timeSlotInput.equalsIgnoreCase("morning"))
+        {
+            event.setStartTime(Timeslot.MORNING);
+        }
+        else if(timeSlotInput.equalsIgnoreCase("afternoon"))
+        {
+            event.setStartTime(Timeslot.AFTERNOON);
+        }
+        else if(timeSlotInput.equalsIgnoreCase("evening"))
+        {
+            event.setStartTime(Timeslot.EVENING);
+        }
+        else
+        {
+            System.out.print("Invalid time slot!");
+        }
     }
 
     private void processLocationInput(Event event, String locationInput)
     {
-
+        if(locationInput.equalsIgnoreCase("arc103"))
+        {
+            event.setLocation(Location.ARC103);
+        }
+        else if(locationInput.equalsIgnoreCase("hll114"))
+        {
+            event.setLocation(Location.HLL114);
+        }
+        else if(locationInput.equalsIgnoreCase("ab2225"))
+        {
+            event.setLocation(Location.AB2225);
+        }
+        else if(locationInput.equalsIgnoreCase("mu302"))
+        {
+            event.setLocation(Location.MU302);
+        }
+        else if(locationInput.equalsIgnoreCase("be_aud"))
+        {
+            event.setLocation(Location.BE_AUD);
+        }
+        else if(locationInput.equalsIgnoreCase("til232"))
+        {
+            event.setLocation(Location.TIL232);
+        }
+        else
+        {
+            System.out.print("Invalid location!");
+        }
     }
 
-    private void processDepartmentInput(Event event, String departmentInput)
+    private void processContactInput(Event event, String departmentInput, String emailInput)
     {
+        //Error right now since Contact does not have default constructor
+        Contact contact = new Contact();
 
-    }
-    private void processContactInput(Event event, String contactInput)
-    {
+        if(departmentInput.equalsIgnoreCase("bait"))
+        {
+            contact.setDepartment(Department.BAIT);
+        }
+        else if(departmentInput.equalsIgnoreCase("cs"))
+        {
+            contact.setDepartment(Department.CS);
+        }
+        else if(departmentInput.equalsIgnoreCase("ee"))
+        {
+            contact.setDepartment(Department.EE);
+        }
+        else if(departmentInput.equalsIgnoreCase("iti"))
+        {
+            contact.setDepartment(Department.ITI);
+        }
+        else if(departmentInput.equalsIgnoreCase("math"))
+        {
+            contact.setDepartment(Department.MATH);
+        }
+        else
+        {
+            System.out.println("Invalid contact information!");
+            return;
+        }
 
+        contact.setEmail(emailInput);
+        if(contact.isValid(contact))
+        {
+            event.setContact(contact);
+        }
+        else
+        {
+            System.out.println("Invalid contact information!");
+        }
     }
 
     private void processDurationInput(Event event, String durationInput)
     {
-
+        int duration = Integer.parseInt(durationInput);
+        if(duration >= 30 && duration <= 120)
+        {
+            event.setDuration(duration);
+        }
+        else
+        {
+            System.out.println("Event duration must be at least 30 minutes and at most 120 minutes");
+        }
     }
 
 
