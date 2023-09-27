@@ -4,12 +4,14 @@ public class EventCalendar
     private Event [] events; //the array holding the list of events
     private int numEvents; //current number of events in the array
 
+    public static final int EVENT_ARRAY_STARTING_SIZE = 4;
+
     public static final int NOT_FOUND = -1;
 
     //Default Constructor
     public EventCalendar()
     {
-        events = new Event[4];
+        events = new Event[EVENT_ARRAY_STARTING_SIZE];
         this.numEvents = 0;
     }
     //Parameterized Constructor
@@ -17,6 +19,11 @@ public class EventCalendar
     {
         events = new Event[numEvents];
         this.numEvents = numEvents;
+    }
+
+    public boolean isEmpty()
+    {
+        return numEvents == 0;
     }
     private int find(Event event) //search an event in the list
     {

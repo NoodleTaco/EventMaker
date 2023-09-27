@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.StringTokenizer;
+
 public class EventOrganizer
 {
     private EventCalendar eventCalendar;
@@ -27,40 +28,99 @@ public class EventOrganizer
 
     }
 
-    private void processInput(StringTokenizer stringTokenizer)
-    {
-        if(stringTokenizer.hasMoreTokens())
-        {
+    private void processInput(StringTokenizer stringTokenizer){
+        if(stringTokenizer.hasMoreTokens()){
+
             String command = stringTokenizer.nextToken();
-            if(command.equals("A"))
-            {
-
+            if(command.equals("A")){
+                processACommand(stringTokenizer);
             }
-            else if(command.equals("R"))
-            {
-
+            else if(command.equals("R")){
+                processRCommand(stringTokenizer);
             }
-            else if(command.equals("P"))
-            {
-                eventCalendar.print();
+            else if(command.equals("P")){
+                if(eventCalendar.isEmpty()) {System.out.println("Event calendar is empty!");}
+                else {eventCalendar.print();}
             }
-            else if(command.equals("PE"))
-            {
-                eventCalendar.printByDate();
+            else if(command.equals("PE")){
+                if(eventCalendar.isEmpty()) {System.out.println("Event calendar is empty!");}
+                else {eventCalendar.printByDate();}
             }
-            else if(command.equals("PC"))
-            {
-                eventCalendar.printByCampus();
+            else if(command.equals("PC")){
+                if(eventCalendar.isEmpty()) {System.out.println("Event calendar is empty!");}
+                else {eventCalendar.printByCampus();}
             }
-            else if(command.equals("PD"))
-            {
-                eventCalendar.printByDepartment();
+            else if(command.equals("PD")){
+                if(eventCalendar.isEmpty()) {System.out.println("Event calendar is empty!");}
+                else {eventCalendar.printByDepartment();}
+            }
+            else{
+                System.out.println(command+ " is an invalid command!");
             }
         }
     }
+
+    private void processACommand(StringTokenizer stringTokenizer)
+    {
+        Event event = new Event();
+        processDateInput(event,stringTokenizer.nextToken());
+
+        String timeSlotCheck = stringTokenizer.nextToken();
+
+        String locationCheck = stringTokenizer.nextToken();
+        String departmentCheck = stringTokenizer.nextToken();
+        String contactCheck = stringTokenizer.nextToken();
+        String durationCheck = stringTokenizer.nextToken();
+
+    }
+    private void processRCommand(StringTokenizer stringTokenizer)
+    {
+
+    }
+
+    private void processDateInput(Event event, String dateInput)
+    {
+        StringTokenizer slashSeparator = new StringTokenizer(dateInput, "/");
+        Date date = new Date(Integer.parseInt( slashSeparator.nextToken()),Integer.parseInt(slashSeparator.nextToken()), Integer.parseInt(slashSeparator.nextToken()));
+        if(date.isValid(date))
+        {
+            event.setDate(date);
+        }
+        else
+        {
+            System.out.println(date.toString() + ": Invalid calendar date!");
+        }
+    }
+
+    private void processTimeInput(Event event, String timeSlotInput)
+    {
+
+    }
+
+    private void processLocationInput(Event event, String locationInput)
+    {
+
+    }
+
+    private void processDepartmentInput(Event event, String departmentInput)
+    {
+
+    }
+    private void processContactInput(Event event, String contactInput)
+    {
+
+    }
+
+    private void processDurationInput(Event event, String durationInput)
+    {
+
+    }
+
+
     //Using temporarily for testing
     private static void printTokenizer(StringTokenizer stringTokenizer)
     {
+
         while (stringTokenizer.hasMoreTokens())
         {
             System.out.println(stringTokenizer.nextToken());
@@ -69,20 +129,10 @@ public class EventOrganizer
     //Temporary Testbed Main
     public static void main(String[] args)
     {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter Input:");
-        while(true)
-        {
-            String line = scanner.nextLine();
-            if (line.equals("Q"))
-            {
-                System.out.println("Closing EventOrganizer");
-                break; // Exit the loop
-            }
-            StringTokenizer st = new StringTokenizer(line);
+        String testDate = ("10/21/2023");
 
-
-        }
+        StringTokenizer strToken = new StringTokenizer(testDate, "/");
+        printTokenizer(strToken);
 
     }
 
