@@ -25,11 +25,21 @@ public class Contact {
 
     public boolean isValid(Contact c){
         if(c.getEmail().contains("@rutgers.edu")){
-            c.getEmail().substring(c.getEmai().length()-12,c.getEmai().length());
+            String s = c.getEmail().substring(c.getEmail().length()-12);
 
-        }
+            if(s.equals("@rutgers.edu")){
+                return true;
+            }
 
+            }
+                /*if(c.getDepartment().i){
 
+                }
+            }
+
+        }*/
+
+return false;
     }
 
 }

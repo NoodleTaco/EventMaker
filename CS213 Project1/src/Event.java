@@ -7,11 +7,9 @@ public class Event implements Comparable<Event> {
     private Contact contact;
     private int duration;
 
-public  Event(date,startTime, location, contact, duration){
-    date= this.date;
-    startTime= this.startTime;
-    contact= this.contact;
-    duration= this.duration;
+
+
+public Event(){
 
 }
 
@@ -57,10 +55,7 @@ public  Event(date,startTime, location, contact, duration){
 
 
 
-    @Override
-    public int compareTo(Event o){
-    return ;
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -74,16 +69,39 @@ public  Event(date,startTime, location, contact, duration){
     public int hashCode() {
         return Objects.hash(date, startTime, location);
     }
+
     @Override
      public String toString(){
-         return;
 
+          String s;
+        s = "[Event Date:"+ this.getDate().getMonth()+"/"+this.getDate().getDay()+"/"+this.getDate().getYear()+"]"+ "[Start:"+ this.getStartTime().getHours()+":"+this.getStartTime().getMinutes()+this.getStartTime().getTime()+"]"+ "[End:"+ (this.getStartTime().getHours()+(this.duration/60))+":"+(this.getStartTime().getMinutes()+(this.duration%60))+this.getStartTime().getTime()+"]"+ "@"+this.getLocation() +"("+this.getLocation().getBuilding()+", "+ this.getLocation().getCampus()+")"+ "["+"Contact:"+ this.getContact().getDepartment()+", " +this.getContact().getEmail()+"]";
+        return s;
     }
 
 
+    @Override
+    public int compareTo(Event o) {
+               if(this.getDate().compareTo(o.getDate())!=0){
+                   return this.getDate().compareTo(o.getDate());
+
+               }
+               if(this.getStartTime().getHours()<o.getStartTime().getHours()){
+                   return -1;
+               }
+               else if(this.getStartTime().getHours()>o.getStartTime().getHours()){
+                   return 1;
+               }
 
 
+               if(this.getStartTime().getMinutes()<o.getStartTime().getMinutes()){
+                 return -1;
+              }
+              else if(this.getStartTime().getMinutes()>o.getStartTime().getMinutes()){
+                return 1;
+              }
+
+                   return 0;
 
 
-
+    }
 }

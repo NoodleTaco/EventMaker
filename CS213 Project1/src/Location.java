@@ -12,4 +12,12 @@ public enum Location {
         this.campus= campus;
 
     }
+
+    public String getBuilding() {
+        return building;
+    }
+
+    public String getCampus() {
+        return campus;
+    }
 }

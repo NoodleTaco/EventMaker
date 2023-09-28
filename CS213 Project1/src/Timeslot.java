@@ -1,13 +1,27 @@
 public enum Timeslot {
-    MORNING(10, 30),
-    AFTERNOON(14,0),
-        EVENING(18,30);
+    MORNING(10, 30,"AM"),
+    AFTERNOON(2,0,"PM"),
+        EVENING(6,30,"PM");
 
     private final int hours;
     private final int minutes;
+    private final String time;
 
-    Timeslot(int hours, int minutes) {
+    public String getTime() {
+        return time;
+    }
+
+    Timeslot(int hours, int minutes, String time) {
         this.hours = hours;
         this.minutes = minutes;
+        this.time = time;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public int getHours() {
+        return hours;
     }
 }
