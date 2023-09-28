@@ -4,19 +4,26 @@ public class EventCalendar
     private Event [] events; //the array holding the list of events
     private int numEvents; //current number of events in the array
 
+    public static final int EVENT_ARRAY_STARTING_SIZE = 4;
+
     public static final int NOT_FOUND = -1;
 
     //Default Constructor
     public EventCalendar()
     {
-        events = new Event[4];
+        events = new Event[EVENT_ARRAY_STARTING_SIZE];
         this.numEvents = 0;
     }
     //Parameterized Constructor
     public EventCalendar(int numEvents)
     {
-        events = new Event[4];
+        events = new Event[numEvents];
         this.numEvents = numEvents;
+    }
+
+    public boolean isEmpty()
+    {
+        return numEvents == 0;
     }
     private int find(Event event) //search an event in the list
     {
@@ -51,6 +58,7 @@ public class EventCalendar
         {
             grow();
         }
+        numEvents ++;
         return true;
     }
     public boolean remove(Event event)
@@ -68,6 +76,7 @@ public class EventCalendar
                     events[events.length -1] = null;
                 }
             }
+            numEvents --;
             return true;
         }
         return false;
@@ -87,10 +96,15 @@ public class EventCalendar
     }
     public void print()
     {
-
+        for(Event event: events)
+        {
+            System.out.println(event.toString());
+        }
     } //print the array as is
     public void printByDate()
     {
+        sortEventsByDate();
+        print();
 
     } //ordered by date and timeslot
     public void printByCampus()
@@ -101,4 +115,36 @@ public class EventCalendar
     {
 
     } //ordered by department
+
+    public void sortEventsByDate() {
+        quickSortByDate(0, numEvents - 1);
+    }
+    private void quickSortByDate(int low, int high) {
+        if (low < high) {
+            int pivotIndex = partitionByDate(low, high);
+            quickSortByDate(low, pivotIndex - 1);
+            quickSortByDate(pivotIndex + 1, high);
+        }
+    }
+    private int partitionByDate(int low, int high) {
+        Event pivot = events[high];
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if (events[j].getDate().compareTo(pivot.getDate()) < 0) { // Compare for closer date
+                i++;
+                swap(i, j);
+            }
+        }
+
+        swap(i + 1, high);
+        return i + 1;
+    }
+
+    private void swap(int i, int j) {
+        Event temp = events[i];
+        events[i] = events[j];
+        events[j] = temp;
+    }
+
 }
