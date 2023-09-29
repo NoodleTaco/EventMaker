@@ -114,17 +114,24 @@ public class EventOrganizer
     private void processDateInput(Event event, String dateInput)
     {
         StringTokenizer slashSeparator = new StringTokenizer(dateInput, "/");
+
         Date date = new Date(Integer.parseInt( slashSeparator.nextToken()),Integer.parseInt(slashSeparator.nextToken()), Integer.parseInt(slashSeparator.nextToken()));
-        if(date.isValid(date))
-        {
-            event.setDate(date);
-        }
-        else
+        if(!date.isValid(date))
         {
             System.out.println(date.toString() + ": Invalid calendar date!");
+            return;
         }
-        //NOTICE! There are multiple error messages yet to be implemented that can print out resulting from date
-        //Need to implement a check for if the date is a future date and if the date is within 6 months
+        if(!date.notPast())
+        {
+            System.out.println(date.toString() + ": Event date must be a future date!");
+            return;
+        }
+        if(!date.notLate())
+        {
+            System.out.println(date.toString() + ": Event date must be within 6 months!");
+            return;
+        }
+        event.setDate(date);
     }
 
     private void processTimeInput(Event event, String timeSlotInput)
@@ -247,10 +254,7 @@ public class EventOrganizer
     //Temporary Testbed Main
     public static void main(String[] args)
     {
-        String testDate = ("10/21/2023");
 
-        StringTokenizer strToken = new StringTokenizer(testDate, "/");
-        printTokenizer(strToken);
 
     }
 

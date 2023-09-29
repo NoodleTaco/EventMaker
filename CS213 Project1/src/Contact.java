@@ -10,6 +10,11 @@ public class Contact {
         this.department = department;
     }
 
+    public Contact()
+    {
+
+    }
+
     public Contact(String email,Department department) {
         this.email = email;
         this.department= department;

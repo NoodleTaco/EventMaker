@@ -85,9 +85,10 @@ public class EventCalendar
     }
     public boolean contains(Event event)
     {
-        for(Event pointer: events)
+
+        for(int i = 0; i < numEvents; i ++)
         {
-            if(pointer.equals(event))
+            if(events[i].equals(event))
             {
                 return true;
             }
@@ -96,10 +97,11 @@ public class EventCalendar
     }
     public void print()
     {
-        for(Event event: events)
+        for(int i = 0; i < numEvents; i ++)
         {
-            System.out.println(event.toString());
+            System.out.println(events[i].toString());
         }
+
     } //print the array as is
     public void printByDate()
     {

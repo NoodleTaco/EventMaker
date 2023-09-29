@@ -27,12 +27,10 @@ public class Date implements Comparable<Date>  {
            return false;
         }
 
-        if(d.getMonth()%2==0){
-            return d.getDay() <= 30 && d.getDay() >= 1;
-
-        }
-        else{
-            return d.getDay() <= 31 && d.getDay() >= 1;
+        else if (month == 4 || month == 6 || month == 9 || month == 11) {
+            return day <= 30; // April, June, September, and November have 30 days.
+        } else {
+            return day <= 31; // All other months have 31 days.
         }
     }
 
@@ -57,9 +55,9 @@ public class Date implements Comparable<Date>  {
     }
 
 
-    public Date(int year,int month,int day) {
-        this.year = day;
-        this.month = day;
+    public Date(int month,int day,int year) {
+        this.year = year;
+        this.month = month;
         this.day = day;
     }
 
@@ -162,18 +160,31 @@ public class Date implements Comparable<Date>  {
 
 
 
-        Calendar c = Calendar.getInstance();
-        Calendar b = Calendar.getInstance();
+        Calendar date = Calendar.getInstance();
+        Calendar currentDate = Calendar.getInstance();
 
-        b.set(Calendar.MONTH, (Calendar.MONTH+6)%12);
-        b.set(Calendar.YEAR, Calendar.YEAR+(this.getMonth()+6)/12);
+        currentDate.add(Calendar.MONTH, 6);
 
+        date.set(Calendar.MONTH, this.getMonth());
+        date.set(Calendar.YEAR, this.getYear());
+        date.set(Calendar.DAY_OF_WEEK, this.getDay());
 
-        c.set(Calendar.MONTH, this.getMonth());
-        c.set(Calendar.YEAR, this.getYear());
-        c.set(Calendar.DAY_OF_WEEK, this.getDay());
+        return date.before(currentDate);
+    }
+    @Override
+    public String toString(){
 
-        return b.compareTo(c) >= 0;
+        String s;
+        s = month+"/"+ day+"/"+year;
+        return s;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Date) {
+            Date date = (Date) obj; //type casting from Object to Student
+            return this.year == date.year && this.month == date.month && this.day == date.day;
+        }
+        return false;
     }
 
 

@@ -1,5 +1,5 @@
 public enum Department {
-    ComputerScience, MATH, ElectricalEngineering, BAIT
+    CS, MATH, EE, BAIT, ITI;
 
 }
 

@@ -58,11 +58,21 @@ public Event(){
 
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object obj) {
+    /*
         if (this == o) return true;
         if (!(o instanceof Event event)) return false;
 
         return Objects.equals(date, event.date) && Objects.equals(startTime, event.startTime) && Objects.equals(location, event.location);
+        */
+
+        if(obj instanceof Event)
+        {
+            Event event = (Event) obj;
+            return this.getDate().equals(event.getDate()) && this.getStartTime().equals(event.getStartTime()) && this.getLocation().equals(event.getLocation());
+        }
+        return false;
+
     }
 
     @Override
