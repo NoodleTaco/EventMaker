@@ -1,3 +1,4 @@
+package project1;
 public enum Department {
     BAIT("Business Analytics and Information Technology"),
     CS("Computer Science"),

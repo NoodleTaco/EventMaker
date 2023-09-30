@@ -1,3 +1,4 @@
+package project1;
 public class EventCalendar
     //NOTICE: Probably a lot of bugs in this, will test when Event class is working
 {

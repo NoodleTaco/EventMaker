@@ -1,3 +1,4 @@
+package project1;
 public enum Timeslot {
     MORNING(10, 30,"AM"),
     AFTERNOON(2,00,"PM"),

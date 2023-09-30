@@ -1,3 +1,4 @@
+package project1;
 public enum Location {
     ARC103( "Allison_Road_Classroom", "Busch"),
     HLL114( "Hill_Center", "Busch"),
