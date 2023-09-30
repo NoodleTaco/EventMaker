@@ -94,11 +94,11 @@ public class Date implements Comparable<Date>  {
 
         c1.set(Calendar.MONTH, o.getMonth());
         c1.set(Calendar.YEAR, o.getYear());
-        c1.set(Calendar.DAY_OF_WEEK, o.getDay());
+        c1.set(Calendar.DAY_OF_MONTH, o.getDay());
 
         c2.set(Calendar.MONTH, this.getMonth());
         c2.set(Calendar.YEAR, this.getYear());
-        c2.set(Calendar.DAY_OF_WEEK, this.getDay());
+        c2.set(Calendar.DAY_OF_MONTH, this.getDay());
 
 
         return c2.compareTo(c1);

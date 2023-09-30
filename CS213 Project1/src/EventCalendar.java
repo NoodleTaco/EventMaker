@@ -102,48 +102,78 @@ public class EventCalendar
     } //print the array as is
     public void printByDate()
     {
-        sortEventsByDate();
+        sortByDate();
         print();
 
     } //ordered by date and timeslot
     public void printByCampus()
     {
-
+        sortByCampus();
+        print();
     } //ordered by campus and building/room
     public void printByDepartment()
     {
-
+        sortByDepartment();
+        print();
     } //ordered by department
 
-    public void sortEventsByDate() {
-        quickSortByDate(0, numEvents - 1);
-    }
-    private void quickSortByDate(int low, int high) {
-        if (low < high) {
-            int pivotIndex = partitionByDate(low, high);
-            quickSortByDate(low, pivotIndex - 1);
-            quickSortByDate(pivotIndex + 1, high);
-        }
-    }
-    private int partitionByDate(int low, int high) {
-        Event pivot = events[high];
-        int i = low - 1;
-
-        for (int j = low; j < high; j++) {
-            if (events[j].getDate().compareTo(pivot.getDate()) < 0) { // Compare for closer date
-                i++;
-                swap(i, j);
+    public void sortByDepartment()
+    {
+        for (int i = 1; i < numEvents; i++)
+        {
+            Event pointer = events[i];
+            int j = i - 1;
+            while (j >= 0 && events[j].getContact().getDepartment().compareTo(pointer.getContact().getDepartment()) > 0)
+            {
+                events[j + 1] = events[j];
+                j = j - 1;
             }
-        }
 
-        swap(i + 1, high);
-        return i + 1;
+            events[j + 1] = pointer;
+        }
+    }
+    public void sortByDate()
+    {
+        for (int i = 1; i < numEvents; i++)
+        {
+            Event pointer = events[i];
+            int j = i - 1;
+            while (j >= 0 )
+            {
+                int dateAndTimeCompare = events[j].getDate().compareTo(pointer.getDate());
+                if (dateAndTimeCompare == 0)
+                {
+                    dateAndTimeCompare = events[j].getStartTime().compareTo(pointer.getStartTime());
+                }
+                if(dateAndTimeCompare > 0)
+                {
+                    events[j + 1] = events[j];
+                    j = j - 1;
+                }
+                else
+                {
+                    break;
+                }
+
+            }
+            events[j + 1] = pointer;
+        }
     }
 
-    private void swap(int i, int j) {
-        Event temp = events[i];
-        events[i] = events[j];
-        events[j] = temp;
+    public void sortByCampus()
+    {
+        for (int i = 1; i < numEvents; i++)
+        {
+            Event pointer = events[i];
+            int j = i - 1;
+            while (j >= 0 && events[j].getLocation().compareTo(pointer.getLocation()) > 0)
+            {
+                events[j + 1] = events[j];
+                j = j - 1;
+            }
+
+            events[j + 1] = pointer;
+        }
     }
 
 }

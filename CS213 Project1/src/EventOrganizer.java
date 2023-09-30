@@ -30,7 +30,6 @@ public class    EventOrganizer
 
     private void processInput(StringTokenizer stringTokenizer){
         if(stringTokenizer.hasMoreTokens()){
-
             String command = stringTokenizer.nextToken();
             if(command.equals("A")){
                 processACommand(stringTokenizer);
@@ -39,27 +38,74 @@ public class    EventOrganizer
                 processRCommand(stringTokenizer);
             }
             else if(command.equals("P")){
-                if(eventCalendar.isEmpty()) {System.out.println("Event calendar is empty!");}
-                else {eventCalendar.print();}
+                processPCommand();
             }
             else if(command.equals("PE")){
-                if(eventCalendar.isEmpty()) {System.out.println("Event calendar is empty!");}
-                else {eventCalendar.printByDate();}
+                processPECommand();
             }
             else if(command.equals("PC")){
-                if(eventCalendar.isEmpty()) {System.out.println("Event calendar is empty!");}
-                else {eventCalendar.printByCampus();}
+                processPCCommand();
             }
             else if(command.equals("PD")){
-                if(eventCalendar.isEmpty()) {System.out.println("Event calendar is empty!");}
-                else {eventCalendar.printByDepartment();}
+                processPDCommand();
             }
             else{
                 System.out.println(command+ " is an invalid command!");
             }
         }
     }
-
+    private void processPCommand()
+    {
+        if(eventCalendar.isEmpty())
+        {
+            System.out.println("Event calendar is empty!");
+        }
+        else
+        {
+            System.out.println("* Event calendar *");
+            eventCalendar.print();
+            System.out.println("* end of event calendar *");
+        }
+    }
+    private void processPECommand()
+    {
+        if(eventCalendar.isEmpty())
+        {
+            System.out.println("Event calendar is empty!");
+        }
+        else
+        {
+            System.out.println("* Event calendar by event date and start time *");
+            eventCalendar.printByDate();
+            System.out.println("* end of event calendar *");
+        }
+    }
+    private void processPCCommand()
+    {
+        if(eventCalendar.isEmpty())
+        {
+            System.out.println("Event calendar is empty!");
+        }
+        else
+        {
+            System.out.println("* Event calendar by campus and building *");
+            eventCalendar.printByCampus();
+            System.out.println("* end of event calendar *");
+        }
+    }
+    private void processPDCommand()
+    {
+        if(eventCalendar.isEmpty())
+        {
+            System.out.println("Event calendar is empty!");
+        }
+        else
+        {
+            System.out.println("* Event calendar by department *");
+            eventCalendar.printByDepartment();
+            System.out.println("* end of event calendar *");
+        }
+    }
     private void processACommand(StringTokenizer stringTokenizer)
     {
         Event event = new Event();
