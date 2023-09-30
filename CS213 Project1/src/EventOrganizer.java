@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class EventOrganizer
+public class    EventOrganizer
 {
     private EventCalendar eventCalendar;
 
@@ -150,7 +150,7 @@ public class EventOrganizer
         }
         else
         {
-            System.out.print("Invalid time slot!");
+            System.out.println("Invalid time slot!");
         }
     }
 
@@ -182,7 +182,7 @@ public class EventOrganizer
         }
         else
         {
-            System.out.print("Invalid location!");
+            System.out.println("Invalid location!");
         }
     }
 
@@ -239,6 +239,7 @@ public class EventOrganizer
         {
             System.out.println("Event duration must be at least 30 minutes and at most 120 minutes");
         }
+
     }
 
 

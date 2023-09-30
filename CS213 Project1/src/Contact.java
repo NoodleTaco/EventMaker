@@ -33,18 +33,14 @@ public class Contact {
             String s = c.getEmail().substring(c.getEmail().length()-12);
 
             if(s.equals("@rutgers.edu")){
-                return true;
-            }
-
-            }
-                /*if(c.getDepartment().i){
-
+                if(c.getDepartment().equals(Department.BAIT) || c.getDepartment().equals(Department.CS)|| c.getDepartment().equals(Department.ITI) || c.getDepartment().equals(Department.EE) || c.getDepartment().equals(Department.MATH))
+                {
+                    return true;
                 }
             }
 
-        }*/
-
-return false;
+        }
+        return false;
     }
 
 }

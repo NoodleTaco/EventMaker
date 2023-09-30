@@ -27,12 +27,8 @@ public class EventCalendar
     }
     private int find(Event event) //search an event in the list
     {
-        for(int i = 0; i < events.length; i++)
+        for(int i = 0; i < numEvents; i++)
         {
-            if(events[i] == null)
-            {
-                return NOT_FOUND;
-            }
             if(events[i].equals(event))
             {
                 return i;
@@ -44,8 +40,8 @@ public class EventCalendar
     //increase events capacity by 4
     private void grow()
     {
-        Event[] tempArray = new Event[events.length+4];
-        for(int i = 0 ; i < events.length; i++)
+        Event[] tempArray = new Event[numEvents+4];
+        for(int i = 0 ; i < numEvents; i++)
         {
             tempArray[i] = events[i];
         }
@@ -54,22 +50,23 @@ public class EventCalendar
     public boolean add(Event event)
     {
         events[numEvents] = event;
+        numEvents ++;
+
         if(numEvents == events.length)
         {
             grow();
         }
-        numEvents ++;
         return true;
     }
     public boolean remove(Event event)
     {
         if(contains(event))
         {
-            for(int i = 0; i < events.length; i++)
+            for(int i = 0; i < numEvents; i++)
             {
                 if(events[i].equals(event))
                 {
-                    for(int j = i; j < events.length-1; j++)
+                    for(int j = i; j < numEvents-1; j++)
                     {
                         events[j] = events[j+1];
                     }

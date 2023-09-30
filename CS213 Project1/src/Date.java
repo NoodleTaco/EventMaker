@@ -7,6 +7,9 @@ public class Date implements Comparable<Date>  {
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUARTERCENTENNIAL = 400;
+
+    // Add 7 instead of 6 to account for Calendar using 0-based months
+    public static final int WITHINSIXMONTHS = 7;
     public boolean isValid(Date d){
 
         boolean leap=isLeap(d);
@@ -35,7 +38,7 @@ public class Date implements Comparable<Date>  {
     }
 
     public static boolean isLeap(Date d){
-        if(d.year%QUARTERCENTENNIAL!=0){
+        if(d.year%QUADRENNIAL!=0){
             return false;
 
         }
@@ -162,12 +165,16 @@ public class Date implements Comparable<Date>  {
 
         Calendar date = Calendar.getInstance();
         Calendar currentDate = Calendar.getInstance();
+        //System.out.println("Current Date: " + currentDate.toString());
 
-        currentDate.add(Calendar.MONTH, 6);
-
+        currentDate.add(Calendar.MONTH, WITHINSIXMONTHS);
+        //System.out.println("6 Months From Now: " + currentDate.toString());
+        //System.out.println("Date to add: " + date.toString());
         date.set(Calendar.MONTH, this.getMonth());
         date.set(Calendar.YEAR, this.getYear());
-        date.set(Calendar.DAY_OF_WEEK, this.getDay());
+        date.set(Calendar.DAY_OF_MONTH, this.getDay());
+
+
 
         return date.before(currentDate);
     }
