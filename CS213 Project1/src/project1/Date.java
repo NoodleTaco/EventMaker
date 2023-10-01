@@ -1,5 +1,10 @@
 package project1;
 import java.util.Calendar;
+/**
+ An instance of this class holds a date
+ Provides multiple methods that check if a date follows criteria to be considered valid
+ @author Donald Yubeaton, Micheal Kassie
+ */
 public class Date implements Comparable<Date>  {
     private int year;
     private int month;
@@ -10,6 +15,23 @@ public class Date implements Comparable<Date>  {
 
     // Add 7 instead of 6 to account for Calendar using 0-based months
     public static final int WITHINSIXMONTHS = 7;
+
+    /**
+     Parameterized Constructor
+     @param month the Date's month
+     @param day the Date's day
+     @param year the Date's year
+     */
+    public Date(int month,int day,int year) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    }
+
+    /**
+     Checks if a Date is a valid calendar date
+     
+     */
     public boolean isValid(Date d){
 
         boolean leap=isLeap(d);
@@ -22,14 +44,9 @@ public class Date implements Comparable<Date>  {
 
             }
         }
-
-
-
-
         if(d.month<1|| d.month>12){
            return false;
         }
-
         else if (month == 4 || month == 6 || month == 9 || month == 11) {
             return day <= 30; // April, June, September, and November have 30 days.
         } else {
@@ -58,11 +75,7 @@ public class Date implements Comparable<Date>  {
     }
 
 
-    public Date(int month,int day,int year) {
-        this.year = year;
-        this.month = month;
-        this.day = day;
-    }
+
 
     public int getYear() {
         return year;

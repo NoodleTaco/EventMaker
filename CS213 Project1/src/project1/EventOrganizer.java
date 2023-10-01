@@ -2,15 +2,29 @@ package project1;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class    EventOrganizer
+/**
+ This class interprets user commands to interact with EventCalendar
+ An instance of this class can process a single or multiple command lines.
+ Processes command line inputs until Q is inputted.
+ @author Donald Yubeaton, Micheal Kassie
+ */
+public class EventOrganizer
 {
     private EventCalendar eventCalendar;
 
+    /**
+     Default Constructor
+     Initializes a default EventCalendar
+     */
     public EventOrganizer()
     {
         eventCalendar = new EventCalendar();
     }
 
+    /**
+     Starts the command line reader
+     Stops when 'Q' is entered
+     */
     public void run()
     {
         Scanner scanner = new Scanner(System.in);
@@ -24,37 +38,33 @@ public class    EventOrganizer
                 break; // Exit the loop
             }
             StringTokenizer stringTokenizer = new StringTokenizer(line);
-            processInput(stringTokenizer);
+            processCommand(stringTokenizer);
         }
-
     }
 
-    private void processInput(StringTokenizer stringTokenizer){
+    /**
+     Processes a single Command
+     Calls upon other input processing methods based on the command
+     @param stringTokenizer The StringTokenizer instance holding the command line input
+     */
+    private void processCommand(StringTokenizer stringTokenizer){
         if(stringTokenizer.hasMoreTokens()){
             String command = stringTokenizer.nextToken();
-            if(command.equals("A")){
-                processACommand(stringTokenizer);
-            }
-            else if(command.equals("R")){
-                processRCommand(stringTokenizer);
-            }
-            else if(command.equals("P")){
-                processPCommand();
-            }
-            else if(command.equals("PE")){
-                processPECommand();
-            }
-            else if(command.equals("PC")){
-                processPCCommand();
-            }
-            else if(command.equals("PD")){
-                processPDCommand();
-            }
-            else{
-                System.out.println(command+ " is an invalid command!");
+            switch (command) {
+                case "A" -> processACommand(stringTokenizer);
+                case "R" -> processRCommand(stringTokenizer);
+                case "P" -> processPCommand();
+                case "PE" -> processPECommand();
+                case "PC" -> processPCCommand();
+                case "PD" -> processPDCommand();
+                default -> System.out.println(command + " is an invalid command!");
             }
         }
     }
+    /**
+     Prints the contents of eventCalendar
+     Prints an error message if eventCalendar is empty
+     */
     private void processPCommand()
     {
         if(eventCalendar.isEmpty())
@@ -68,6 +78,11 @@ public class    EventOrganizer
             System.out.println("* end of event calendar *");
         }
     }
+
+    /**
+     Prints the contents of eventCalendar sorted by date
+     Prints an error message if eventCalendar is empty
+     */
     private void processPECommand()
     {
         if(eventCalendar.isEmpty())
@@ -81,6 +96,10 @@ public class    EventOrganizer
             System.out.println("* end of event calendar *");
         }
     }
+    /**
+     Prints the contents of eventCalendar sorted by location
+     Prints an error message if eventCalendar is empty
+     */
     private void processPCCommand()
     {
         if(eventCalendar.isEmpty())
@@ -94,6 +113,10 @@ public class    EventOrganizer
             System.out.println("* end of event calendar *");
         }
     }
+    /**
+     Prints the contents of eventCalendar sorted by department
+     Prints an error message if eventCalendar is empty
+     */
     private void processPDCommand()
     {
         if(eventCalendar.isEmpty())
@@ -107,6 +130,12 @@ public class    EventOrganizer
             System.out.println("* end of event calendar *");
         }
     }
+    /**
+     Processes the command to add an event to eventCalendar
+     Creates a new event based on the input
+     If the event already exists in eventCalendar, then an error message is printed, otherwise the event is added
+     @param stringTokenizer the StringTokenizer instance that holds the appropriate arguments for the 'A' command
+     */
     private void processACommand(StringTokenizer stringTokenizer)
     {
         Event event = new Event();
@@ -123,17 +152,24 @@ public class    EventOrganizer
 
         if(event.getDate() != null && event.getStartTime() != null && event.getLocation() != null && event.getContact() != null && event.getDuration() != 0)
         {
-            if (eventCalendar.contains(event))
-            {
-                System.out.println("The event is already on the calendar.");
-            }
-            else
+            if (eventCalendar.add(event))
             {
                 eventCalendar.add(event);
                 System.out.println("Event added to the calendar.");
+
+            }
+            else
+            {
+                System.out.println("The event is already on the calendar.");
             }
         }
     }
+    /**
+     Processes the command to remove an event from eventCalendar
+     Creates a new event based on the input
+     If the event does not exist in eventCalendar, an error message is printed, otherwise it removes the event
+     @param stringTokenizer the StringTokenizer instance that holds the appropriate arguments for the 'R' command
+     */
     private void processRCommand(StringTokenizer stringTokenizer)
     {
         Event event = new Event();
@@ -158,6 +194,12 @@ public class    EventOrganizer
 
     }
 
+    /**
+     Creates a Date object based on an input and sets it as an event's date
+     Returns an appropriate error message if the date is invalid, a past date, or not within 6 months
+     @param event the event to have its date set
+     @param dateInput a string input that forms a Date object
+     */
     private void processDateInput(Event event, String dateInput)
     {
         StringTokenizer slashSeparator = new StringTokenizer(dateInput, "/");
@@ -181,6 +223,12 @@ public class    EventOrganizer
         event.setDate(date);
     }
 
+    /**
+     Sets an event's StartingTime based on an input
+     Prints an error message if the TimeSlot input is invalid
+     @param event the event to have its StartingTime set
+     @param timeSlotInput a string input that forms a TimeSlot
+     */
     private void processTimeInput(Event event, String timeSlotInput)
     {
         if(timeSlotInput.equalsIgnoreCase("morning"))
@@ -200,7 +248,12 @@ public class    EventOrganizer
             System.out.println("Invalid time slot!");
         }
     }
-
+    /**
+     Sets an event's Location based on an input
+     Prints an error message if the Location input is invalid
+     @param event the event to have its Location set
+     @param locationInput a string input that forms a Location
+     */
     private void processLocationInput(Event event, String locationInput)
     {
         if(locationInput.equalsIgnoreCase("arc103"))
@@ -233,6 +286,13 @@ public class    EventOrganizer
         }
     }
 
+    /**
+     Creates a Contact object based on an input and sets it as an event's contact
+     Returns an appropriate error message if the email or department is invalid
+     @param event the event to have its contact set
+     @param departmentInput a string input that forms the department field in the contact object
+     @param emailInput a string input that forms the email field in the contact object
+     */
     private void processContactInput(Event event, String departmentInput, String emailInput)
     {
         //Error right now since Contact does not have default constructor
@@ -275,6 +335,12 @@ public class    EventOrganizer
         }
     }
 
+    /**
+     Sets an event's duration based on an input
+     Prints an error message if the duration is not between 30 and 120 minutes
+     @param event the event to have its duration set
+     @param durationInput integer that forms the event's duration
+     */
     private void processDurationInput(Event event, String durationInput)
     {
         int duration = Integer.parseInt(durationInput);
@@ -288,22 +354,4 @@ public class    EventOrganizer
         }
 
     }
-
-
-    //Using temporarily for testing
-    private static void printTokenizer(StringTokenizer stringTokenizer)
-    {
-
-        while (stringTokenizer.hasMoreTokens())
-        {
-            System.out.println(stringTokenizer.nextToken());
-        }
-    }
-    //Temporary Testbed Main
-    public static void main(String[] args)
-    {
-
-
-    }
-
 }

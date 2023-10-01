@@ -1,4 +1,10 @@
 package project1;
+/**
+ This class stores event objects in an array and offers methods to interact with and print the array.
+ An instance of this class holds an array of events and the number of events in the array.
+ The class implements different sorting algorithms for the array of events
+ @author Donald Yubeaton, Micheal Kassie
+ */
 public class EventCalendar
     //NOTICE: Probably a lot of bugs in this, will test when Event class is working
 {
@@ -9,24 +15,29 @@ public class EventCalendar
 
     public static final int NOT_FOUND = -1;
 
-    //Default Constructor
+    /**
+     Default Constructor
+    */
     public EventCalendar()
     {
         events = new Event[EVENT_ARRAY_STARTING_SIZE];
         this.numEvents = 0;
     }
-    //Parameterized Constructor
-    public EventCalendar(int numEvents)
-    {
-        events = new Event[numEvents];
-        this.numEvents = numEvents;
-    }
 
+    /**
+     Returns if the events array is empty
+     @return true if numEvents = 0, false otherwise
+     */
     public boolean isEmpty()
     {
         return numEvents == 0;
     }
-    private int find(Event event) //search an event in the list
+    /**
+     Checks if the events array contains a given event
+     @param event the event being searched for
+     @return returns the index of the event if found or -1 if it wasn't found
+     */
+    private int find(Event event)
     {
         for(int i = 0; i < numEvents; i++)
         {
@@ -38,30 +49,47 @@ public class EventCalendar
         return NOT_FOUND;
 
     }
-    //increase events capacity by 4
-    private void grow()
+    /**
+     Increases the size of the events array by 4
+     Initializes a new array and copies the contents of events into it
+     */
+    private void growEvents()
     {
-        Event[] tempArray = new Event[numEvents+4];
+        Event[] tempArray = new Event[numEvents + EVENT_ARRAY_STARTING_SIZE];
         for(int i = 0 ; i < numEvents; i++)
         {
             tempArray[i] = events[i];
         }
         events = tempArray;
     }
+    /**
+     Adds an event to the end of the events array
+     @param event the event to be added to the array
+     @return false if event is already in the array, true otherwise
+     */
     public boolean add(Event event)
     {
+        if (find(event) != NOT_FOUND)
+        {
+            return false;
+        }
         events[numEvents] = event;
         numEvents ++;
 
         if(numEvents == events.length)
         {
-            grow();
+            growEvents();
         }
         return true;
     }
+    /**
+     Removes an event in the events array
+     @param event the event to be removed from the array
+     @return false if event is not in the array, true otherwise
+     */
     public boolean remove(Event event)
     {
-        if(contains(event))
+        if(find(event) != NOT_FOUND)
         {
             for(int i = 0; i < numEvents; i++)
             {
@@ -81,43 +109,49 @@ public class EventCalendar
 
 
     }
-    public boolean contains(Event event)
-    {
-
-        for(int i = 0; i < numEvents; i ++)
-        {
-            if(events[i].equals(event))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+    /**
+     Prints the contents of the events array
+     */
     public void print()
     {
         for(int i = 0; i < numEvents; i ++)
         {
             System.out.println(events[i].toString());
         }
-
-    } //print the array as is
+    }
+    /**
+     Sorts the events array by Date then prints its contents
+     */
     public void printByDate()
     {
         sortByDate();
         print();
 
-    } //ordered by date and timeslot
+    }
+
+    /**
+     Sorts the events array by Location then prints its contents
+     */
     public void printByCampus()
     {
         sortByCampus();
         print();
-    } //ordered by campus and building/room
+    }
+
+    /**
+     Sorts the events array by Department then prints its contents
+     */
     public void printByDepartment()
     {
         sortByDepartment();
         print();
     } //ordered by department
 
+    /**
+     Sorts the events array by Department
+     Order of Departments is in the order they are specified in Department
+     In Place algorithm
+     */
     public void sortByDepartment()
     {
         for (int i = 1; i < numEvents; i++)
@@ -133,34 +167,32 @@ public class EventCalendar
             events[j + 1] = pointer;
         }
     }
+    /**
+     Sorts the events array by the Date and time they occur
+     The events array is sorted from the earliest ending time to latest
+     In Place algorithm
+     */
     public void sortByDate()
     {
         for (int i = 1; i < numEvents; i++)
         {
             Event pointer = events[i];
             int j = i - 1;
-            while (j >= 0 )
+            while (j >= 0 && events[j].compareTo(pointer) > 0)
             {
-                int dateAndTimeCompare = events[j].getDate().compareTo(pointer.getDate());
-                if (dateAndTimeCompare == 0)
-                {
-                    dateAndTimeCompare = events[j].getStartTime().compareTo(pointer.getStartTime());
-                }
-                if(dateAndTimeCompare > 0)
-                {
-                    events[j + 1] = events[j];
-                    j = j - 1;
-                }
-                else
-                {
-                    break;
-                }
-
+                events[j + 1] = events[j];
+                j = j - 1;
             }
+
             events[j + 1] = pointer;
         }
     }
 
+    /**
+     Sorts the events array by Location
+     Order of Locations is in the order they are specified in Location
+     In Place algorithm
+     */
     public void sortByCampus()
     {
         for (int i = 1; i < numEvents; i++)
