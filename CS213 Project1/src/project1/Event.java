@@ -14,6 +14,10 @@ public class Event implements Comparable<Event> {
     private Contact contact;
     private int duration;
 
+    public static final int AM_PM_CONVERSION = 12;
+
+    public static final int AM_PM_CONVERSION_PAST_TWELVE = 13;
+
     /**
      Default Constructor
      */
@@ -116,17 +120,17 @@ public class Event implements Comparable<Event> {
         calendar.set(Calendar.MINUTE, this.getStartTime().getMinutes());
         if(this.getStartTime().getAmPm().equals("PM"))
         {
-            calendar.add(Calendar.HOUR_OF_DAY, 12);
+            calendar.add(Calendar.HOUR_OF_DAY, AM_PM_CONVERSION);
         }
         calendar.add(Calendar.MINUTE, this.duration);
         String amPm;
         String hour =  decimalFormat.format(calendar.get(Calendar.HOUR_OF_DAY));
-        if(calendar.get(Calendar.HOUR_OF_DAY) >= 12)
+        if(calendar.get(Calendar.HOUR_OF_DAY) >= AM_PM_CONVERSION)
         {
             amPm = "PM";
-            if(calendar.get(Calendar.HOUR_OF_DAY) >= 13)
+            if(calendar.get(Calendar.HOUR_OF_DAY) >= AM_PM_CONVERSION_PAST_TWELVE)
             {
-                hour = decimalFormat.format(calendar.get(Calendar.HOUR_OF_DAY) -12);
+                hour = decimalFormat.format(calendar.get(Calendar.HOUR_OF_DAY) -AM_PM_CONVERSION);
             }
         }
         else

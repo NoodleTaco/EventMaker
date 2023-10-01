@@ -16,6 +16,28 @@ public class Date implements Comparable<Date>  {
     // Add 7 instead of 6 to account for Calendar using 0-based months
     public static final int WITHINSIXMONTHS = 7;
 
+    public static final int MONTH_JANUARY = 1;
+
+    public static final int MONTH_FEBRUARY = 2;
+
+    public static final int MONTH_APRIL = 4;
+
+    public static final int MONTH_JUNE = 6;
+
+    public static final int MONTH_SEPTEMBER = 9;
+
+    public static final int MONTH_NOVEMBER = 11;
+
+    public static final int MONTH_DECEMBER = 12;
+
+    public static final int FEBRUARY_DAYS = 28;
+
+    public static final int FEBRUARY_LEAP_DAYS = 29;
+
+    public static final int THIRTY_DAYS = 30;
+
+    public static final int THIRTY_ONE_DAYS = 31;
+
     /**
      Parameterized Constructor
      @param month the Date's month
@@ -30,73 +52,99 @@ public class Date implements Comparable<Date>  {
 
     /**
      Checks if a Date is a valid calendar date
-     
+     @param date the date being checked
+     @return true if the date is a valid calendar date, false otherwise
      */
-    public boolean isValid(Date d){
+    public boolean isValid(Date date){
 
-        boolean leap=isLeap(d);
-        if(d.month==2) {
+        boolean leap=isLeap(date);
+        if(date.month==MONTH_FEBRUARY) {
             if (leap) {
-                return d.day >= 1 && d.day <= 29;
+                return date.day >= 1 && date.day <= FEBRUARY_LEAP_DAYS;
             }
             else {
-                return d.day >= 1 && d.day <= 28;
+                return date.day >= 1 && date.day <= FEBRUARY_DAYS;
 
             }
         }
-        if(d.month<1|| d.month>12){
+        if(date.month<MONTH_JANUARY|| date.month>MONTH_DECEMBER){
            return false;
         }
-        else if (month == 4 || month == 6 || month == 9 || month == 11) {
-            return day <= 30; // April, June, September, and November have 30 days.
+        else if (month == MONTH_APRIL || month == MONTH_JUNE || month == MONTH_SEPTEMBER || month == MONTH_NOVEMBER) {
+            return day <= THIRTY_DAYS;
         } else {
-            return day <= 31; // All other months have 31 days.
+            return day <= THIRTY_ONE_DAYS;
         }
     }
 
-    public static boolean isLeap(Date d){
-        if(d.year%QUADRENNIAL!=0){
+    /**
+     Checks if a date occurs during a leap year
+     @param date the date being checked
+     @return true if the date occurs during a leap year, false otherwise
+     */
+    public static boolean isLeap(Date date){
+        if(date.year%QUADRENNIAL!=0){
             return false;
 
         }
-        if(d.year%CENTENNIAL==0){
-            if(d.year%QUARTERCENTENNIAL!=0){
+        if(date.year%CENTENNIAL==0){
+            if(date.year%QUARTERCENTENNIAL!=0){
                 return false;
-
             }
         }
-
         else{
             return true;
         }
-
         return false;
 
     }
 
 
 
-
+    /**
+     Returns the Date's year
+     @return the Date's year
+     */
     public int getYear() {
         return year;
     }
 
+    /**
+     Returns the Date's month
+     @return the Date's month
+     */
     public int getMonth() {
         return month;
     }
 
+    /**
+     Returns the Date's day
+     @return the Date's day
+     */
     public int getDay() {
         return day;
     }
 
+    /**
+     Sets the Date's day
+     @param day the new day value for the Date
+     */
     public void setDay(int day) {
         this.day = day;
     }
 
+    /**
+     Sets the Date's month
+     @param month the new month value for the Date
+     */
     public void setMonth(int month) {
         this.month = month;
     }
 
+    /**
+     Sets the Date's year
+     @param year the new year value for the Date
+     */
     public void setYear(int year) {
         this.year = year;
     }
@@ -115,42 +163,6 @@ public class Date implements Comparable<Date>  {
 
 
         return c2.compareTo(c1);
-
-
-
-
-/*
-        if(o.getYear()<this.getYear()){
-            return 1;
-
-        }
-        else if(o.getYear()>this.getYear()){
-            return -1;
-        }
-        else {
-            if(o.getMonth()<this.getMonth()){
-                return 1;
-
-            }
-            else if(o.getMonth()>this.getMonth()){
-                return -1;
-
-        }
-            else{
-                if(o.getDay()<this.getDay()){
-                    return 1;
-
-                }
-                else if(o.getDay()>this.getDay()){
-                    return -1;
-            }
-                else{
-                     return 0;
-                }
-            }
-        }
-
- */
     }
 
 
@@ -161,6 +173,11 @@ public class Date implements Comparable<Date>  {
         TestMonth();
 
     }*/
+
+    /**
+     Checks if the date is a future date
+     @return true if the date is a future date, false otherwise
+     */
     public boolean notPast(){
         Calendar b = Calendar.getInstance();
         Calendar c = Calendar.getInstance();
@@ -172,10 +189,11 @@ public class Date implements Comparable<Date>  {
 
     }
 
+    /**
+     Checks if the date occurs within 6 months
+     @return true if the date occurs within 6 months, false otherwise
+     */
     public boolean notLate(){
-
-
-
         Calendar date = Calendar.getInstance();
         Calendar currentDate = Calendar.getInstance();
         //System.out.println("Current Date: " + currentDate.toString());

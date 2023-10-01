@@ -12,6 +12,11 @@ public class EventOrganizer
 {
     private EventCalendar eventCalendar;
 
+    public static final int MIN_DURATION = 30;
+
+    public static final int MAX_DURATION = 120;
+
+
     /**
      Default Constructor
      Initializes a default EventCalendar
@@ -150,7 +155,8 @@ public class EventOrganizer
 
         processDurationInput(event,stringTokenizer.nextToken());
 
-        if(event.getDate() != null && event.getStartTime() != null && event.getLocation() != null && event.getContact() != null && event.getDuration() != 0)
+        if(event.getDate() != null && event.getStartTime() != null && event.getLocation() != null && event.getContact()
+                != null && event.getDuration() != 0)
         {
             if (eventCalendar.add(event))
             {
@@ -204,7 +210,8 @@ public class EventOrganizer
     {
         StringTokenizer slashSeparator = new StringTokenizer(dateInput, "/");
 
-        Date date = new Date(Integer.parseInt( slashSeparator.nextToken()),Integer.parseInt(slashSeparator.nextToken()), Integer.parseInt(slashSeparator.nextToken()));
+        Date date = new Date(Integer.parseInt( slashSeparator.nextToken()),Integer.parseInt(slashSeparator.nextToken()),
+                Integer.parseInt(slashSeparator.nextToken()));
         if(!date.isValid(date))
         {
             System.out.println(date.toString() + ": Invalid calendar date!");
@@ -344,7 +351,7 @@ public class EventOrganizer
     private void processDurationInput(Event event, String durationInput)
     {
         int duration = Integer.parseInt(durationInput);
-        if(duration >= 30 && duration <= 120)
+        if(duration >= MIN_DURATION && duration <= MAX_DURATION)
         {
             event.setDuration(duration);
         }
