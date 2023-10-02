@@ -3,7 +3,7 @@ import java.util.Calendar;
 /**
  An instance of this class holds a date
  Provides multiple methods that check if a date follows criteria to be considered valid
- @author Donald Yubeaton, Micheal Kassie
+ @author Donald Yubeaton, Michael Kassie
  */
 public class Date implements Comparable<Date>  {
     private int year;
@@ -205,6 +205,7 @@ public class Date implements Comparable<Date>  {
 
         return date.before(currentDate);
     }
+
     @Override
     public String toString(){
 
@@ -212,6 +213,7 @@ public class Date implements Comparable<Date>  {
         s = month+"/"+ day+"/"+year;
         return s;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Date) {
@@ -220,6 +222,11 @@ public class Date implements Comparable<Date>  {
         }
         return false;
     }
+
+    /**
+     * The test bed function calls test case methods to test the isValid() method of the event class.
+     * @param args string arguments passed from the command line.
+     */
     public static void main(String[] args){
         testFebruaryLeapA();
         testFebruaryLeapB();
@@ -240,10 +247,10 @@ public class Date implements Comparable<Date>  {
 
     }
 
-
-
-
-
+    /**
+     * Test case #1 creates a date instance with last day of February of a leap year.
+     * Calls test result which prints pass or fail if the expected and actual outputs are the same.
+     */
     private static void testFebruaryLeapA(){
         Date date= new Date(2,29,2020);
         String s= "FebLeapA";
@@ -253,6 +260,11 @@ public class Date implements Comparable<Date>  {
 
 
     }
+
+    /**
+     * Test case #2 creates a date instance with day greater than the last day of February of a leap year.
+     * Calls test result which prints pass or fail if the expected and actual outputs are the same.
+     */
     private static void testFebruaryLeapB(){
         Date date= new Date(2,30,2016);
         String s= "FebLeapB";
@@ -260,8 +272,11 @@ public class Date implements Comparable<Date>  {
         boolean actualOutput= date.isValid();
         testResult(expectedOutput, actualOutput, s);
 
-
     }
+    /**
+     * Test case #3 creates a date instance with day lesser than the first day of February of a leap year.
+     * Calls test result which prints pass or fail if the expected and actual outputs are the same.
+     */
 
     private static void testFebruaryLeapC(){
         Date date= new Date(2,0,2012);
@@ -272,6 +287,11 @@ public class Date implements Comparable<Date>  {
 
 
     }
+
+    /**
+     * Test case #4 creates a date instance with day greater than the last day of February of a non-leap year.
+     * Calls test result which prints pass or fail if the expected and actual outputs are the same.
+     */
     private static void testFebruaryNonLeapA(){
         Date date= new Date(2,29,2021);
         String s= "FebNonLeapA";
@@ -281,6 +301,11 @@ public class Date implements Comparable<Date>  {
 
 
     }
+
+    /**
+     * Test case #5 creates a date instance with the last day of February of a non-leap year.
+     * Calls test result which prints pass or fail if the expected and actual outputs are the same.
+     */
     private static void testFebruaryNonLeapB(){
         Date date= new Date(2,28,2023);
         String s= "FebNonLeapB";
@@ -290,6 +315,11 @@ public class Date implements Comparable<Date>  {
 
 
     }
+
+    /**
+     * Test case #6 creates a date instance with day lesser than the first day of February of a non-leap year.
+     * Calls test result which prints pass or fail if the expected and actual outputs are the same.
+     */
     private static void testFebruaryNonLeapC(){
         Date date= new Date(2,0,2022);
         String s= "FebNonLeapB";
@@ -299,6 +329,11 @@ public class Date implements Comparable<Date>  {
 
 
     }
+
+    /**
+     * Test case #7 creates a date instance with last day of January.
+     * Calls test result which prints pass or fail if the expected and actual outputs are the same.
+     */
 
     private static void testOtherMonthsA(){
         Date date= new Date(1,31,2022);
@@ -310,8 +345,12 @@ public class Date implements Comparable<Date>  {
 
     }
 
+    /**
+     * Test case #8 creates a date instance with day greater than the last day of september.
+     * Calls test result which prints pass or fail if the expected and actual outputs are the same.
+     */
     private static void testOtherMonthsB(){
-        Date date= new Date(10,31,2007);
+        Date date= new Date(9,31,2007);
         String s= "OtherMonthsB";
         boolean expectedOutput= false;
         boolean actualOutput= date.isValid();
@@ -319,6 +358,11 @@ public class Date implements Comparable<Date>  {
 
 
     }
+    /**
+     * Test case #9 creates a date instance with day lesser than the first day of november.
+     * Calls test result which prints pass or fail if the expected and actual outputs are the same.
+     */
+
     private static void testOtherMonthsC(){
         Date date= new Date(11,0,2006);
         String s= "OtherMonthsC";
@@ -328,6 +372,10 @@ public class Date implements Comparable<Date>  {
 
 
     }
+    /**
+     * Test case #10 creates a date instance with day greater than the first day of january.
+     * Calls test result which prints pass or fail if the expected and actual outputs are the same.
+     */
     private static void testOtherMonthsD(){
         Date date= new Date(1,32,2011);
         String s= "OtherMonthsD";
@@ -337,6 +385,11 @@ public class Date implements Comparable<Date>  {
 
 
     }
+    /**
+     * Test case #11 creates a date instance with last day of April.
+     * Calls test result which prints pass or fail if the expected and actual outputs are the same.
+     */
+
     private static void testOtherMonthsE(){
         Date date= new Date(4,30,2011);
         String s= "OtherMonthsD";
@@ -347,6 +400,11 @@ public class Date implements Comparable<Date>  {
 
     }
 
+    /**
+     * Test case #12 creates a date instance with a month greater than 12.
+     * Calls test result which prints pass or fail if the expected and actual outputs are the same.
+     */
+
     private static void testMonthA(){
         Date date= new Date(14,4,2013);
         String s= "MonthDaysA";
@@ -356,6 +414,10 @@ public class Date implements Comparable<Date>  {
 
 
     }
+    /**
+     * Test case #12 creates a date instance with the last month of the year.
+     * Calls test result which prints pass or fail if the expected and actual outputs are the same.
+     */
     private static void testMonthB(){
         Date date= new Date(12,4,2013);
         String s= "MonthDaysB";
@@ -367,9 +429,12 @@ public class Date implements Comparable<Date>  {
     }
 
 
-
-
-
+    /**
+     * Prints test passed if expected and actual outputs match otherwise prints failed.
+     * @param expectedOutput to be compared with actualOutput
+     * @param actualOutput to be compared with expectedOutput
+     * @param s inserts the testcase for which the result is to be printed into the print statements.
+     */
     private static void testResult(boolean expectedOutput, boolean actualOutput, String s){
         if(expectedOutput!=actualOutput){
             System.out.println("Test case# "+s+" failed");
