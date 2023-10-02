@@ -212,7 +212,7 @@ public class EventOrganizer
 
         Date date = new Date(Integer.parseInt( slashSeparator.nextToken()),Integer.parseInt(slashSeparator.nextToken()),
                 Integer.parseInt(slashSeparator.nextToken()));
-        if(!date.isValid(date))
+        if(!date.isValid())
         {
             System.out.println(date.toString() + ": Invalid calendar date!");
             return;

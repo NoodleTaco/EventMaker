@@ -52,28 +52,27 @@ public class Date implements Comparable<Date>  {
 
     /**
      Checks if a Date is a valid calendar date
-     @param date the date being checked
      @return true if the date is a valid calendar date, false otherwise
      */
-    public boolean isValid(Date date){
+    public boolean isValid(){
 
-        boolean leap=isLeap(date);
-        if(date.month==MONTH_FEBRUARY) {
+        boolean leap=isLeap(this);
+        if(this.month==MONTH_FEBRUARY) {
             if (leap) {
-                return date.day >= 1 && date.day <= FEBRUARY_LEAP_DAYS;
+                return this.day >= 1 && this.day <= FEBRUARY_LEAP_DAYS;
             }
             else {
-                return date.day >= 1 && date.day <= FEBRUARY_DAYS;
+                return this.day >= 1 && this.day <= FEBRUARY_DAYS;
 
             }
         }
-        if(date.month<MONTH_JANUARY|| date.month>MONTH_DECEMBER){
+        if(this.month<MONTH_JANUARY|| this.month>MONTH_DECEMBER){
            return false;
         }
         else if (month == MONTH_APRIL || month == MONTH_JUNE || month == MONTH_SEPTEMBER || month == MONTH_NOVEMBER) {
-            return day <= THIRTY_DAYS;
+            return this.day <= THIRTY_DAYS;
         } else {
-            return day <= THIRTY_ONE_DAYS;
+            return this.day <= THIRTY_ONE_DAYS;
         }
     }
 
@@ -167,12 +166,9 @@ public class Date implements Comparable<Date>  {
 
 
 
-    /*public static void main(String[] args){
-        testLeap();
-        testNonLeap();
-        TestMonth();
 
-    }*/
+
+
 
     /**
      Checks if the date is a future date
@@ -223,6 +219,165 @@ public class Date implements Comparable<Date>  {
             return this.year == date.year && this.month == date.month && this.day == date.day;
         }
         return false;
+    }
+    public static void main(String[] args){
+        testFebruaryLeapA();
+        testFebruaryLeapB();
+        testFebruaryLeapC();
+
+        testFebruaryNonLeapA();
+        testFebruaryNonLeapB();
+        testFebruaryNonLeapC();
+
+        testOtherMonthsA();
+        testOtherMonthsB();
+        testOtherMonthsC();
+        testOtherMonthsD();
+        testOtherMonthsE();
+
+        testMonthA();
+        testMonthB();
+
+    }
+
+
+
+
+
+    private static void testFebruaryLeapA(){
+        Date date= new Date(2,29,2020);
+        String s= "FebLeapA";
+        boolean expectedOutput= true;
+        boolean actualOutput= date.isValid();
+        testResult(expectedOutput, actualOutput, s);
+
+
+    }
+    private static void testFebruaryLeapB(){
+        Date date= new Date(2,30,2016);
+        String s= "FebLeapB";
+        boolean expectedOutput= false;
+        boolean actualOutput= date.isValid();
+        testResult(expectedOutput, actualOutput, s);
+
+
+    }
+
+    private static void testFebruaryLeapC(){
+        Date date= new Date(2,0,2012);
+        String s= "FebLeapC";
+        boolean expectedOutput= false;
+        boolean actualOutput= date.isValid();
+        testResult(expectedOutput, actualOutput, s);
+
+
+    }
+    private static void testFebruaryNonLeapA(){
+        Date date= new Date(2,29,2021);
+        String s= "FebNonLeapA";
+        boolean expectedOutput= false;
+        boolean actualOutput= date.isValid();
+        testResult(expectedOutput, actualOutput, s);
+
+
+    }
+    private static void testFebruaryNonLeapB(){
+        Date date= new Date(2,28,2023);
+        String s= "FebNonLeapB";
+        boolean expectedOutput= true;
+        boolean actualOutput= date.isValid();
+        testResult(expectedOutput, actualOutput, s);
+
+
+    }
+    private static void testFebruaryNonLeapC(){
+        Date date= new Date(2,0,2022);
+        String s= "FebNonLeapB";
+        boolean expectedOutput= false;
+        boolean actualOutput= date.isValid();
+        testResult(expectedOutput, actualOutput, s);
+
+
+    }
+
+    private static void testOtherMonthsA(){
+        Date date= new Date(1,31,2022);
+        String s= "OtherMonthsA";
+        boolean expectedOutput= true;
+        boolean actualOutput= date.isValid();
+        testResult(expectedOutput, actualOutput, s);
+
+
+    }
+
+    private static void testOtherMonthsB(){
+        Date date= new Date(10,31,2007);
+        String s= "OtherMonthsB";
+        boolean expectedOutput= false;
+        boolean actualOutput= date.isValid();
+        testResult(expectedOutput, actualOutput, s);
+
+
+    }
+    private static void testOtherMonthsC(){
+        Date date= new Date(11,0,2006);
+        String s= "OtherMonthsC";
+        boolean expectedOutput= false;
+        boolean actualOutput= date.isValid();
+        testResult(expectedOutput, actualOutput, s);
+
+
+    }
+    private static void testOtherMonthsD(){
+        Date date= new Date(1,32,2011);
+        String s= "OtherMonthsD";
+        boolean expectedOutput= false;
+        boolean actualOutput= date.isValid();
+        testResult(expectedOutput, actualOutput, s);
+
+
+    }
+    private static void testOtherMonthsE(){
+        Date date= new Date(4,30,2011);
+        String s= "OtherMonthsD";
+        boolean expectedOutput= true;
+        boolean actualOutput= date.isValid();
+        testResult(expectedOutput, actualOutput, s);
+
+
+    }
+
+    private static void testMonthA(){
+        Date date= new Date(14,4,2013);
+        String s= "MonthDaysA";
+        boolean expectedOutput= false;
+        boolean actualOutput= date.isValid();
+        testResult(expectedOutput, actualOutput, s);
+
+
+    }
+    private static void testMonthB(){
+        Date date= new Date(12,4,2013);
+        String s= "MonthDaysB";
+        boolean expectedOutput= true;
+        boolean actualOutput= date.isValid();
+        testResult(expectedOutput, actualOutput, s);
+
+
+    }
+
+
+
+
+
+    private static void testResult(boolean expectedOutput, boolean actualOutput, String s){
+        if(expectedOutput!=actualOutput){
+            System.out.println("Test case# "+s+" failed");
+            return;
+
+        }
+        System.out.println("Test case# "+s+" passed");
+
     }
 
 
