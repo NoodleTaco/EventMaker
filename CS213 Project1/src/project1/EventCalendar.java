@@ -1,9 +1,9 @@
 package project1;
 /**
- This class stores event objects in an array and offers methods to interact with and print the array.
- An instance of this class holds an array of events and the number of events in the array.
- The class implements different sorting algorithms for the array of events
- @author Donald Yubeaton, Micheal Kassie
+ * This class stores event objects in an array and offers methods to interact with and print the array.
+ * An instance of this class holds an array of events and the number of events in the array.
+ * The class implements different sorting algorithms for the array of events
+ * @author Donald Yubeaton, Micheal Kassie
  */
 public class EventCalendar
     //NOTICE: Probably a lot of bugs in this, will test when Event class is working
@@ -16,7 +16,7 @@ public class EventCalendar
     public static final int NOT_FOUND = -1;
 
     /**
-     Default Constructor
+     * Default Constructor
     */
     public EventCalendar()
     {
@@ -25,17 +25,17 @@ public class EventCalendar
     }
 
     /**
-     Returns if the events array is empty
-     @return true if numEvents = 0, false otherwise
+     * Returns if the events array is empty
+     * @return true if numEvents = 0, false otherwise
      */
     public boolean isEmpty()
     {
         return numEvents == 0;
     }
     /**
-     Checks if the events array contains a given event
-     @param event the event being searched for
-     @return returns the index of the event if found or -1 if it wasn't found
+     * Checks if the events array contains a given event
+     * @param event the event being searched for
+     * @return returns the index of the event if found or -1 if it wasn't found
      */
     private int find(Event event)
     {
@@ -50,8 +50,8 @@ public class EventCalendar
 
     }
     /**
-     Increases the size of the events array by 4
-     Initializes a new array and copies the contents of events into it
+     * Increases the size of the events array by 4
+     * Initializes a new array and copies the contents of events into it
      */
     private void growEvents()
     {
@@ -63,9 +63,9 @@ public class EventCalendar
         events = tempArray;
     }
     /**
-     Adds an event to the end of the events array
-     @param event the event to be added to the array
-     @return false if event is already in the array, true otherwise
+     * Adds an event to the end of the events array
+     * @param event the event to be added to the array
+     * @return false if event is already in the array, true otherwise
      */
     public boolean add(Event event)
     {
@@ -83,9 +83,9 @@ public class EventCalendar
         return true;
     }
     /**
-     Removes an event in the events array
-     @param event the event to be removed from the array
-     @return false if event is not in the array, true otherwise
+     * Removes an event in the events array
+     * @param event the event to be removed from the array
+     * return false if event is not in the array, true otherwise
      */
     public boolean remove(Event event)
     {
@@ -110,7 +110,7 @@ public class EventCalendar
 
     }
     /**
-     Prints the contents of the events array
+     * Prints the contents of the events array
      */
     public void print()
     {
@@ -120,7 +120,7 @@ public class EventCalendar
         }
     }
     /**
-     Sorts the events array by Date then prints its contents
+     * Sorts the events array by Date then prints its contents
      */
     public void printByDate()
     {
@@ -130,7 +130,7 @@ public class EventCalendar
     }
 
     /**
-     Sorts the events array by Location then prints its contents
+     * Sorts the events array by Location then prints its contents
      */
     public void printByCampus()
     {
@@ -139,7 +139,7 @@ public class EventCalendar
     }
 
     /**
-     Sorts the events array by Department then prints its contents
+     * Sorts the events array by Department then prints its contents
      */
     public void printByDepartment()
     {
@@ -148,9 +148,9 @@ public class EventCalendar
     } //ordered by department
 
     /**
-     Sorts the events array by Department
-     Order of Departments is in the order they are specified in Department
-     In Place algorithm
+     * Sorts the events array by Department
+     * Order of Departments is in the order they are specified in Department
+     * In Place algorithm
      */
     public void sortByDepartment()
     {
@@ -168,9 +168,9 @@ public class EventCalendar
         }
     }
     /**
-     Sorts the events array by the Date and time they occur
-     The events array is sorted from the earliest ending time to latest
-     In Place algorithm
+     * Sorts the events array by the Date and time they occur
+     * The events array is sorted from the earliest ending time to latest
+     * In Place algorithm
      */
     public void sortByDate()
     {
@@ -189,9 +189,9 @@ public class EventCalendar
     }
 
     /**
-     Sorts the events array by Location
-     Order of Locations is in the order they are specified in Location
-     In Place algorithm
+     * Sorts the events array by Location
+     * Order of Locations is in the order they are specified in Location
+     * In Place algorithm
      */
     public void sortByCampus()
     {

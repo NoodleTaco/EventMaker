@@ -1,9 +1,9 @@
 package project1;
 import java.util.Calendar;
 /**
- An instance of this class holds a date
- Provides multiple methods that check if a date follows criteria to be considered valid
- @author Donald Yubeaton, Michael Kassie
+ * An instance of this class holds a date
+ * Provides multiple methods that check if a date follows criteria to be considered valid
+ * @author Donald Yubeaton, Michael Kassie
  */
 public class Date implements Comparable<Date>  {
     private int year;
@@ -39,10 +39,10 @@ public class Date implements Comparable<Date>  {
     public static final int THIRTY_ONE_DAYS = 31;
 
     /**
-     Parameterized Constructor
-     @param month the Date's month
-     @param day the Date's day
-     @param year the Date's year
+     * Parameterized Constructor
+     * @param month the Date's month
+     * @param day the Date's day
+     * @param year the Date's year
      */
     public Date(int month,int day,int year) {
         this.year = year;
@@ -51,8 +51,8 @@ public class Date implements Comparable<Date>  {
     }
 
     /**
-     Checks if a Date is a valid calendar date
-     @return true if the date is a valid calendar date, false otherwise
+     * Checks if a Date is a valid calendar date
+     * @return true if the date is a valid calendar date, false otherwise
      */
     public boolean isValid(){
 
@@ -70,16 +70,16 @@ public class Date implements Comparable<Date>  {
            return false;
         }
         else if (month == MONTH_APRIL || month == MONTH_JUNE || month == MONTH_SEPTEMBER || month == MONTH_NOVEMBER) {
-            return this.day <= THIRTY_DAYS;
+            return this.day <= THIRTY_DAYS && this.day >= 1;
         } else {
-            return this.day <= THIRTY_ONE_DAYS;
+            return this.day <= THIRTY_ONE_DAYS && this.day >= 1;
         }
     }
 
     /**
-     Checks if a date occurs during a leap year
-     @param date the date being checked
-     @return true if the date occurs during a leap year, false otherwise
+     * Checks if a date occurs during a leap year
+     * @param date the date being checked
+     * @return true if the date occurs during a leap year, false otherwise
      */
     public static boolean isLeap(Date date){
         if(date.year%QUADRENNIAL!=0){
@@ -101,48 +101,48 @@ public class Date implements Comparable<Date>  {
 
 
     /**
-     Returns the Date's year
-     @return the Date's year
+     * Returns the Date's year
+     * @return the Date's year
      */
     public int getYear() {
         return year;
     }
 
     /**
-     Returns the Date's month
-     @return the Date's month
+     * Returns the Date's month
+     * @return the Date's month
      */
     public int getMonth() {
         return month;
     }
 
     /**
-     Returns the Date's day
-     @return the Date's day
+     * Returns the Date's day
+     * @return the Date's day
      */
     public int getDay() {
         return day;
     }
 
     /**
-     Sets the Date's day
-     @param day the new day value for the Date
+     * Sets the Date's day
+     * @param day the new day value for the Date
      */
     public void setDay(int day) {
         this.day = day;
     }
 
     /**
-     Sets the Date's month
-     @param month the new month value for the Date
+     * Sets the Date's month
+     * @param month the new month value for the Date
      */
     public void setMonth(int month) {
         this.month = month;
     }
 
     /**
-     Sets the Date's year
-     @param year the new year value for the Date
+     * Sets the Date's year
+     * @param year the new year value for the Date
      */
     public void setYear(int year) {
         this.year = year;
@@ -171,8 +171,8 @@ public class Date implements Comparable<Date>  {
 
 
     /**
-     Checks if the date is a future date
-     @return true if the date is a future date, false otherwise
+     * Checks if the date is a future date
+     * @return true if the date is a future date, false otherwise
      */
     public boolean notPast(){
         Calendar b = Calendar.getInstance();
@@ -186,8 +186,8 @@ public class Date implements Comparable<Date>  {
     }
 
     /**
-     Checks if the date occurs within 6 months
-     @return true if the date occurs within 6 months, false otherwise
+     * Checks if the date occurs within 6 months
+     * @return true if the date occurs within 6 months, false otherwise
      */
     public boolean notLate(){
         Calendar date = Calendar.getInstance();
@@ -322,7 +322,7 @@ public class Date implements Comparable<Date>  {
      */
     private static void testFebruaryNonLeapC(){
         Date date= new Date(2,0,2022);
-        String s= "FebNonLeapB";
+        String s= "FebNonLeapC";
         boolean expectedOutput= false;
         boolean actualOutput= date.isValid();
         testResult(expectedOutput, actualOutput, s);
@@ -392,7 +392,7 @@ public class Date implements Comparable<Date>  {
 
     private static void testOtherMonthsE(){
         Date date= new Date(4,30,2011);
-        String s= "OtherMonthsD";
+        String s= "OtherMonthsE";
         boolean expectedOutput= true;
         boolean actualOutput= date.isValid();
         testResult(expectedOutput, actualOutput, s);
@@ -415,7 +415,7 @@ public class Date implements Comparable<Date>  {
 
     }
     /**
-     * Test case #12 creates a date instance with the last month of the year.
+     * Test case #13 creates a date instance with the last month of the year.
      * Calls test result which prints pass or fail if the expected and actual outputs are the same.
      */
     private static void testMonthB(){

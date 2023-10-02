@@ -1,7 +1,7 @@
 package project1;
 /**
- Different Campus locations where events take place
- @author Micheal Kassie, Donald Yubeaton
+ * Different Campus locations where events take place
+ * @author Micheal Kassie, Donald Yubeaton
  */
 public enum Location {
     ARC103( "Allison_Road_Classroom", "Busch"),
@@ -14,7 +14,7 @@ public enum Location {
  private final String building;
  private final String campus;
     /**
-     Enum Constructor
+     * Enum Constructor
      */
     Location(String building, String campus) {
         this.building= building;
@@ -23,16 +23,16 @@ public enum Location {
     }
 
     /**
-     Returns the Location's building
-     @return the Location's building
+     * Returns the Location's building
+     * @return the Location's building
      */
     public String getBuilding() {
         return building;
     }
 
     /**
-     Returns the Location's campus
-     @return the Location's campus
+     * Returns the Location's campus
+     * @return the Location's campus
      */
     public String getCampus() {
         return campus;

@@ -3,10 +3,10 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 /**
- This class interprets user commands to interact with EventCalendar
- An instance of this class can process a single or multiple command lines.
- Processes command line inputs until Q is inputted.
- @author Donald Yubeaton, Micheal Kassie
+ * This class interprets user commands to interact with EventCalendar
+ * An instance of this class can process a single or multiple command lines.
+ * Processes command line inputs until Q is inputted.
+ * @author Donald Yubeaton, Micheal Kassie
  */
 public class EventOrganizer
 {
@@ -18,8 +18,8 @@ public class EventOrganizer
 
 
     /**
-     Default Constructor
-     Initializes a default EventCalendar
+     * Default Constructor
+     * Initializes a default EventCalendar
      */
     public EventOrganizer()
     {
@@ -27,8 +27,8 @@ public class EventOrganizer
     }
 
     /**
-     Starts the command line reader
-     Stops when 'Q' is entered
+     * Starts the command line reader
+     * Stops when 'Q' is entered
      */
     public void run()
     {
@@ -48,9 +48,9 @@ public class EventOrganizer
     }
 
     /**
-     Processes a single Command
-     Calls upon other input processing methods based on the command
-     @param stringTokenizer The StringTokenizer instance holding the command line input
+     * Processes a single Command
+     * Calls upon other input processing methods based on the command
+     * @param stringTokenizer The StringTokenizer instance holding the command line input
      */
     private void processCommand(StringTokenizer stringTokenizer){
         if(stringTokenizer.hasMoreTokens()){
@@ -67,8 +67,8 @@ public class EventOrganizer
         }
     }
     /**
-     Prints the contents of eventCalendar
-     Prints an error message if eventCalendar is empty
+     * Prints the contents of eventCalendar
+     * Prints an error message if eventCalendar is empty
      */
     private void processPCommand()
     {
@@ -85,8 +85,8 @@ public class EventOrganizer
     }
 
     /**
-     Prints the contents of eventCalendar sorted by date
-     Prints an error message if eventCalendar is empty
+     * Prints the contents of eventCalendar sorted by date
+     * Prints an error message if eventCalendar is empty
      */
     private void processPECommand()
     {
@@ -102,8 +102,8 @@ public class EventOrganizer
         }
     }
     /**
-     Prints the contents of eventCalendar sorted by location
-     Prints an error message if eventCalendar is empty
+     * Prints the contents of eventCalendar sorted by location
+     * Prints an error message if eventCalendar is empty
      */
     private void processPCCommand()
     {
@@ -119,8 +119,8 @@ public class EventOrganizer
         }
     }
     /**
-     Prints the contents of eventCalendar sorted by department
-     Prints an error message if eventCalendar is empty
+     * Prints the contents of eventCalendar sorted by department
+     * Prints an error message if eventCalendar is empty
      */
     private void processPDCommand()
     {
@@ -136,10 +136,10 @@ public class EventOrganizer
         }
     }
     /**
-     Processes the command to add an event to eventCalendar
-     Creates a new event based on the input
-     If the event already exists in eventCalendar, then an error message is printed, otherwise the event is added
-     @param stringTokenizer the StringTokenizer instance that holds the appropriate arguments for the 'A' command
+     * Processes the command to add an event to eventCalendar
+     * Creates a new event based on the input
+     * If the event already exists in eventCalendar, then an error message is printed, otherwise the event is added
+     * @param stringTokenizer the StringTokenizer instance that holds the appropriate arguments for the 'A' command
      */
     private void processACommand(StringTokenizer stringTokenizer)
     {
@@ -171,10 +171,10 @@ public class EventOrganizer
         }
     }
     /**
-     Processes the command to remove an event from eventCalendar
-     Creates a new event based on the input
-     If the event does not exist in eventCalendar, an error message is printed, otherwise it removes the event
-     @param stringTokenizer the StringTokenizer instance that holds the appropriate arguments for the 'R' command
+     * Processes the command to remove an event from eventCalendar
+     * Creates a new event based on the input
+     * If the event does not exist in eventCalendar, an error message is printed, otherwise it removes the event
+     * @param stringTokenizer the StringTokenizer instance that holds the appropriate arguments for the 'R' command
      */
     private void processRCommand(StringTokenizer stringTokenizer)
     {
@@ -201,10 +201,10 @@ public class EventOrganizer
     }
 
     /**
-     Creates a Date object based on an input and sets it as an event's date
-     Returns an appropriate error message if the date is invalid, a past date, or not within 6 months
-     @param event the event to have its date set
-     @param dateInput a string input that forms a Date object
+     * Creates a Date object based on an input and sets it as an event's date
+     * Returns an appropriate error message if the date is invalid, a past date, or not within 6 months
+     * @param event the event to have its date set
+     * @param dateInput a string input that forms a Date object
      */
     private void processDateInput(Event event, String dateInput)
     {
@@ -231,10 +231,10 @@ public class EventOrganizer
     }
 
     /**
-     Sets an event's StartingTime based on an input
-     Prints an error message if the TimeSlot input is invalid
-     @param event the event to have its StartingTime set
-     @param timeSlotInput a string input that forms a TimeSlot
+     * Sets an event's StartingTime based on an input
+     * Prints an error message if the TimeSlot input is invalid
+     * @param event the event to have its StartingTime set
+     * @param timeSlotInput a string input that forms a TimeSlot
      */
     private void processTimeInput(Event event, String timeSlotInput)
     {
@@ -256,10 +256,10 @@ public class EventOrganizer
         }
     }
     /**
-     Sets an event's Location based on an input
-     Prints an error message if the Location input is invalid
-     @param event the event to have its Location set
-     @param locationInput a string input that forms a Location
+     * Sets an event's Location based on an input
+     * Prints an error message if the Location input is invalid
+     * @param event the event to have its Location set
+     * @param locationInput a string input that forms a Location
      */
     private void processLocationInput(Event event, String locationInput)
     {
@@ -294,11 +294,11 @@ public class EventOrganizer
     }
 
     /**
-     Creates a Contact object based on an input and sets it as an event's contact
-     Returns an appropriate error message if the email or department is invalid
-     @param event the event to have its contact set
-     @param departmentInput a string input that forms the department field in the contact object
-     @param emailInput a string input that forms the email field in the contact object
+     * Creates a Contact object based on an input and sets it as an event's contact
+     * Returns an appropriate error message if the email or department is invalid
+     * @param event the event to have its contact set
+     * @param departmentInput a string input that forms the department field in the contact object
+     * @param emailInput a string input that forms the email field in the contact object
      */
     private void processContactInput(Event event, String departmentInput, String emailInput)
     {
@@ -343,10 +343,10 @@ public class EventOrganizer
     }
 
     /**
-     Sets an event's duration based on an input
-     Prints an error message if the duration is not between 30 and 120 minutes
-     @param event the event to have its duration set
-     @param durationInput integer that forms the event's duration
+     * Sets an event's duration based on an input
+     * Prints an error message if the duration is not between 30 and 120 minutes
+     * @param event the event to have its duration set
+     * @param durationInput integer that forms the event's duration
      */
     private void processDurationInput(Event event, String durationInput)
     {

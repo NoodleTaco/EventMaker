@@ -3,9 +3,9 @@ package project1;
 import java.util.Calendar;
 import java.text.DecimalFormat;
 /**
- This class constructs event objects.
- An event object holds a date, a starting time,a location, contact information, and a duration.
- @author Micheal Kassie, Donald Yubeaton
+ * This class constructs event objects.
+ * An event object holds a date, a starting time,a location, contact information, and a duration.
+ * @author Micheal Kassie, Donald Yubeaton
  */
 public class Event implements Comparable<Event> {
     private Date date;
@@ -211,8 +211,8 @@ public class Event implements Comparable<Event> {
     }
 
     /**
-     The test bed function calls test case methods to test the equals() method of the event class.
-     @param args string arguments passed from the command line.
+     * The test bed function calls test case methods to test the equals() method of the event class.
+     * @param args string arguments passed from the command line.
      */
     public static void main(String[] args) {
         checkDateA();
@@ -222,6 +222,8 @@ public class Event implements Comparable<Event> {
 
 
         checkLocationA();
+
+        checkDateTimeLocationA();
 
     }
 
@@ -242,7 +244,7 @@ public class Event implements Comparable<Event> {
     }
 
     /**
-     * Test case #2 creates two event instances with same dates but with everything else same.
+     * Test case #2 creates two event instances with the same fields.
      * Calls test result and prints pass or fail if the expected and actual outputs are the same.
      */
     private static void checkDateB(){
@@ -288,6 +290,22 @@ public class Event implements Comparable<Event> {
         boolean actualOutput= event1.equals(event2);
         testResult(expectedOutput, actualOutput, s);
 
+
+    }
+
+    /**
+     * Test case #5 creates two event instances with the same date, location, and timeslot but different durations
+     * Calls test result and prints pass or fail if the expected and actual outputs are the same.
+     */
+    private static void checkDateTimeLocationA(){
+        Date date1= new Date(2,2,2023);
+        Date date2= new Date(2,2,2023);
+        Event event1= new Event(date1,Timeslot.AFTERNOON,10,Location.HLL114);
+        Event event2= new Event(date2,Timeslot.AFTERNOON,30,Location.HLL114);
+        String s="CheckDateTimeLocationA";
+        boolean expectedOutput= true;
+        boolean actualOutput= event1.equals(event2);
+        testResult(expectedOutput, actualOutput, s);
 
     }
 
