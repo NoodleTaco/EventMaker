@@ -53,7 +53,7 @@ public class EventCalendar
      * Increases the size of the events array by 4
      * Initializes a new array and copies the contents of events into it
      */
-    private void growEvents()
+    private void grow()
     {
         Event[] tempArray = new Event[numEvents + EVENT_ARRAY_STARTING_SIZE];
         for(int i = 0 ; i < numEvents; i++)
@@ -78,7 +78,7 @@ public class EventCalendar
 
         if(numEvents == events.length)
         {
-            growEvents();
+            grow();
         }
         return true;
     }
@@ -204,7 +204,6 @@ public class EventCalendar
                 events[j + 1] = events[j];
                 j = j - 1;
             }
-
             events[j + 1] = pointer;
         }
     }

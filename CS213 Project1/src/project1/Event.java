@@ -138,8 +138,8 @@ public class Event implements Comparable<Event> {
      */
     private String eventStartAndEnd() {
         DecimalFormat decimalFormat = new DecimalFormat("00");
-        String startingTime = ("[Start: " + decimalFormat.format(this.getStartTime().getHours()) + ":" + decimalFormat.format(this.getStartTime().getMinutes()) + this.getStartTime().getAmPm() + "] ");
-
+        String startingTime = ("[Start: " + decimalFormat.format(this.getStartTime().getHours()) + ":"
+                + decimalFormat.format(this.getStartTime().getMinutes()) + this.getStartTime().getAmPm() + "] ");
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, this.getStartTime().getHours());
         calendar.set(Calendar.MINUTE, this.getStartTime().getMinutes());
@@ -170,7 +170,8 @@ public class Event implements Comparable<Event> {
     public boolean equals(Object obj) {
         if (obj instanceof Event) {
             Event event = (Event) obj;
-            return this.getDate().equals(event.getDate()) && this.getStartTime().equals(event.getStartTime()) && this.getLocation().equals(event.getLocation());
+            return this.getDate().equals(event.getDate()) && this.getStartTime().equals(event.getStartTime()) &&
+                    this.getLocation().equals(event.getLocation());
         }
         return false;
 
@@ -182,10 +183,10 @@ public class Event implements Comparable<Event> {
      */
     @Override
     public String toString() {
-
-        String s;
-        s = "[Event Date:" + this.getDate().getMonth() + "/" + this.getDate().getDay() + "/" + this.getDate().getYear() + "] " + eventStartAndEnd() + "@" + this.getLocation() + " (" + this.getLocation().getBuilding() + ", " + this.getLocation().getCampus() + ") " + "[" + "Contact:" + this.getContact().getDepartment() + ", " + this.getContact().getEmail() + "]";
-        return s;
+        return "[Event Date:" + this.getDate().getMonth() + "/" + this.getDate().getDay() + "/" + this.getDate().getYear()
+                + "] " + eventStartAndEnd() + "@" + this.getLocation() + " (" + this.getLocation().getBuilding() + ", "
+                + this.getLocation().getCampus() + ") " + "[" + "Contact:" + this.getContact().getDepartment() + ", "
+                + this.getContact().getEmail() + "]";
     }
 
     /**
@@ -197,7 +198,6 @@ public class Event implements Comparable<Event> {
     public int compareTo(Event event) {
         if (this.getDate().compareTo(event.getDate()) != 0) {
             return this.getDate().compareTo(event.getDate());
-
         }
         if (this.getStartTime().compareTo(event.getStartTime()) != 0) {
             return this.getStartTime().compareTo(event.getStartTime());
@@ -217,12 +217,8 @@ public class Event implements Comparable<Event> {
     public static void main(String[] args) {
         checkDateA();
         checkDateB();
-
         checkTimeA();
-
-
         checkLocationA();
-
         checkDateTimeLocationA();
 
     }
