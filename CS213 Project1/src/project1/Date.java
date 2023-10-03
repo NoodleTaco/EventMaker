@@ -205,7 +205,10 @@ public class Date implements Comparable<Date>  {
 
         return date.before(currentDate);
     }
-
+    /**
+     * Returns a string representation of a date in form month/day/year
+     * @return a string representation of a date
+     */
     @Override
     public String toString(){
 
@@ -214,6 +217,11 @@ public class Date implements Comparable<Date>  {
         return s;
     }
 
+    /**
+     * Compares if a date object equals another date object
+     * @param obj the date argument to be compared to
+     * @return true if the dates are equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Date) {

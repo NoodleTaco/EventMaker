@@ -179,7 +179,7 @@ public class Event implements Comparable<Event> {
 
     /**
      * it returns a string with its date, location, department and email.
-     * @return s a string containing all the information of an event.
+     * @return a string containing all the information of an event.
      */
     @Override
     public String toString() {

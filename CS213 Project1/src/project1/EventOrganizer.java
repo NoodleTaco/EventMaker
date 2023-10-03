@@ -16,7 +16,6 @@ public class EventOrganizer
 
     public static final int MAX_DURATION = 120;
 
-
     /**
      * Default Constructor
      * Initializes a default EventCalendar
